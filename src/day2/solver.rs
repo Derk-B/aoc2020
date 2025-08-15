@@ -1,6 +1,5 @@
 use crate::shared::file_reader;
 use regex::Regex;
-use std::collections::HashMap;
 
 pub fn solve() {
     let lines = match file_reader::read_lines("files/day2/input.txt") {
