@@ -10,18 +10,15 @@ fn merge_sort(list: &mut Vec<i32>) -> Vec<i32> {
 
     let mut r = merge_sort(&mut right);
     let mut l = merge_sort(list);
-    println!("{:?}, {:?}", l, r);
 
     let mut res: Vec<i32> = Vec::new();
-    while r.len() > 0 && l.len() > 0 {
+    while r.len() > 0 || l.len() > 0 {
         if r.len() == 0 {
             res.append(&mut l);
-            return res;
         } else if l.len() == 0 {
             res.append(&mut r);
-            return res;
         } else {
-            if r.first() < l.first() {
+            if r.first().unwrap() < l.first().unwrap() {
                 res.push(*r.first().unwrap());
                 r.remove(0);
             } else {
@@ -41,6 +38,7 @@ pub fn solve() {
     };
 
     let mut max: i32 = 0;
+    let mut seat_ids: Vec<i32> = Vec::new();
 
     for line in lines.map_while(Result::ok) {
         if line.len() < 10 {
@@ -69,10 +67,15 @@ pub fn solve() {
         if seat_id > max {
             max = seat_id;
         }
+        seat_ids.push(seat_id);
     }
-
-    let mut values: Vec<i32> = vec![1, 4, 3, 5, 2];
-    println!("{:?}", merge_sort(&mut values));
-
     println!("Day 5 - part 1: {}", max);
+
+    seat_ids = merge_sort(&mut seat_ids);
+    for i in 0..(seat_ids.len() - 1) {
+        if seat_ids[i + 1] - seat_ids[i] == 2 {
+            println!("Day 5 - part 2: {}", seat_ids[i] + 1);
+            break;
+        }
+    }
 }
