@@ -1,11 +1,16 @@
 mod day1;
 mod day2;
+mod day3;
 mod shared;
 
 use std::env;
 
 fn main() {
-    let solvers: Vec<&dyn Fn()> = vec![&day1::solver::solve, &day2::solver::solve];
+    let solvers: Vec<&dyn Fn()> = vec![
+        &day1::solver::solve,
+        &day2::solver::solve,
+        &day3::solver::solve,
+    ];
 
     let selected_day = env::args().nth(1);
 
