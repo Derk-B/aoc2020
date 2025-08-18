@@ -4,6 +4,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 mod shared;
 
 use std::env;
@@ -16,6 +17,7 @@ fn main() {
         &day4::solver::solve,
         &day5::solver::solve,
         &day6::solver::solve,
+        &day7::solver::solve,
     ];
 
     let selected_day = env::args().nth(1);
